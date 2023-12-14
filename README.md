@@ -5,5 +5,5 @@
 - Blockchain: Maintain a chain of blocks with cryptographic hashing.
 - User Interface: Basic command-line interface for interacting with the blockchain.
 
-- Open index.html to open the page or use the link given below
+- Open index.html to open the page or use the link given
  https://gokulkannan25.github.io/BlockChainTransactionLedgerusingJava/

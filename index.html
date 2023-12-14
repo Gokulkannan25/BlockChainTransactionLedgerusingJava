@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain UI</title>
+    <style>
+        body {
+            background-image: url('bgm.jpg');
+             background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .box {
+            padding: 20px;
+            border: 4px solid black;
+            border-radius: 8px;
+            width: 50%;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, button {
+            margin-top: 5px;
+        }
+        button {
+            padding: 8px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .letter-format {
+            line-height: 1.6;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Blockchain UI</h1>
+
+<div class="container">
+    <div class="box">
+        <h2>Add Transaction</h2>
+       <b> <label for="sender">Sender:</label></b>
+        <input type="text" id="sender" placeholder="Enter sender">
+
+        <b><label for="receiver">Receiver:</label></b>
+        <input type="text" id="receiver" placeholder="Enter receiver">
+
+        <b><label for="amount">Amount:</label></b>
+        <input type="number" id="amount" placeholder="Enter amount"><br>
+
+        <button onclick="addTransaction()">Add Transaction</button>
+        <button onclick="mineBlock()">Mine Block</button>
+    
+    </div>
+</div>
+<center>
+<div class="box letter-format">
+    <h2>Blockchain Details</h2>
+    <p>
+        Dear User,
+        <br>
+        The details will be displayed here after you enter the details
+    </p>
+    <pre id="blockchainDetails"></pre>
+    <p>
+        Thank you for using our blockchain services.
+        <br>
+        Sincerely,
+        <br>
+        Blockchain System
+    </p>
+</div>
+</center>
+
+
+<script>
+    let blockchain = [];
+
+    function addTransaction() {
+        const sender = document.getElementById('sender').value;
+        const receiver = document.getElementById('receiver').value;
+        const amount = parseFloat(document.getElementById('amount').value);
+
+        const transaction = {
+            sender: sender,
+            receiver: receiver,
+            amount: amount,
+            timestamp: new Date().toLocaleString(),
+            nonce: Math.floor(Math.random() * 1000) // Placeholder nonce
+        };
+
+        blockchain.push(transaction);
+        updateBlockchainDetails();
+        clearInputFields();
+    }
+
+    function mineBlock() {
+        // Perform mining operation (not implemented in this simplified example)
+        alert('Mining block...'); // Placeholder action
+        updateBlockchainDetails();
+    }
+
+    function updateBlockchainDetails() {
+        const blockchainDetails = document.getElementById('blockchainDetails');
+        blockchainDetails.textContent = formatBlockchainDetails();
+    }
+
+    function formatBlockchainDetails() {
+        let formattedDetails = '';
+        blockchain.forEach(transaction => {
+            formattedDetails += `Sender: ${transaction.sender}\n`;
+            formattedDetails += `Receiver: ${transaction.receiver}\n`;
+            formattedDetails += `Amount: ${transaction.amount}\n`;
+            formattedDetails += `Timestamp: ${transaction.timestamp}\n`;
+            formattedDetails += `Nonce: ${transaction.nonce}\n\n`;
+        });
+        return formattedDetails.trim();
+    }
+
+    function clearInputFields() {
+        document.getElementById('sender').value = '';
+        document.getElementById('receiver').value = '';
+        document.getElementById('amount').value = '';
+    }
+</script>
+
+</body>
+</html>
